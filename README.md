@@ -9,5 +9,6 @@ Ex: "add, 1, 2", "multiply, 45, 2", "sin, 45"
 
 Arithmetic calculations accepted: add, subtract, multiply, divide
 Trig functions accepted: sin, cos, tan, asin, acos, atan
+At this time all trig functions use degrees, not radians.
 
 After reading text.txt, the microservice will replace all text with the result. If the request was unable to complete (divide by zero error, operands out of range, etc), the response will hold an error code.
