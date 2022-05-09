@@ -3,15 +3,31 @@ import math, time
 # Simple arithmetic functions
 
 def add(op1, op2):
+    if op1 is None:
+        return "Error: First operand required"
+    if op2 is None:
+        return "Error: Second operand required"
     return op1 + op2
 
 def subtract(op1, op2):
+    if op1 is None:
+        return "Error: First operand required"
+    if op2 is None:
+        return "Error: Second operand required"
     return op1 - op2
 
 def multiply(op1, op2):
+    if op1 is None:
+        return "Error: First operand required"
+    if op2 is None:
+        return "Error: Second operand required"
     return op1* op2
 
 def divide(op1, op2):
+    if op1 is None:
+        return "Error: First operand required"
+    if op2 is None:
+        return "Error: Second operand required"
     if op2 == 0:
         return "Error: Cannot divide by 0"
         
@@ -20,7 +36,6 @@ def divide(op1, op2):
 # Trig functions
 
 def sin(op1):
-    # Check for range
     return math.sin(op1)
 
 def cos(op1):
@@ -55,18 +70,25 @@ while True:
     
     with open('text.txt','r+') as f:
         data = f.read()
-        
+        op1 = None
+        op2 = None
         
         # Find operation and operand(s)
         data_chunks = data.split(', ')
         if len(data_chunks) == 1:
             # print('DATA HAS ONE VALUE')
             continue
-        operation, op1 = data_chunks[0].lower(), float(data_chunks[1])
+        operation = data_chunks[0].lower()
+        try: 
+            op1 = float(data_chunks[1])
+        except ValueError:
+            op1 = None
+        
         if len(data_chunks) == 3:
-            op2 = float(data_chunks[2])
-        else:
-            op2 = None
+            try:
+                op2 = float(data_chunks[2])
+            except ValueError:
+                op2 = None
             
         # send operands to appropriate functions
 
@@ -81,17 +103,39 @@ while True:
             
         # Trig functions
         elif operation == 'sin':
-            result = sin(math.radians(op1))
+            if op1 is None:
+                result = "Error: First operand required"
+            else:    
+                result = sin(math.radians(op1))
+                
         elif operation == 'cos':
-            result = cos(math.radians(op1))
+            if op1 is None:
+                result = "Error: First operand required"
+            else:
+                result = cos(math.radians(op1))
+
         elif operation == 'tan':
-            result = tan(math.radians(op1))
+            if op1 is None:
+                result = "Error: First operand required"
+            else:
+                result = tan(math.radians(op1))
         elif operation == 'asin':
-            result = math.degrees(asin(op1))
+            if op1 is None:
+                result = "Error: First operand required"
+            else:
+                result = math.degrees(asin(op1))
+
         elif operation == 'acos':
-            result = math.degrees(acos(op1))
+            if op1 is None:
+                result = "Error: First operand required"
+            else:
+                result = math.degrees(acos(op1))
+
         elif operation == 'atan':
-            result = math.degrees(atan(op1))
+            if op1 is None:
+                result = "Error: First operand required"
+            else:
+                result = math.degrees(atan(op1))
         
         # Check for incorrect function call
         else:
@@ -100,7 +144,3 @@ while True:
         f.truncate(0)
         f.seek(0)
         f.write(str(result))
-        
-
-            
-    
