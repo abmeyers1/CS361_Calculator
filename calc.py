@@ -63,7 +63,7 @@ def atan(op1):
     return math.atan(op1)
 
 
-# parsing text file
+# Consistently running, parsing text file
 while True:
     time.sleep(1)
     
@@ -76,8 +76,9 @@ while True:
         # Find operation and operand(s)
         data_chunks = data.split(', ')
         if len(data_chunks) == 1:
-            # print('DATA HAS ONE VALUE')
             continue
+
+        # Split data to operation and operands
         operation = data_chunks[0].lower()
         try: 
             op1 = float(data_chunks[1])

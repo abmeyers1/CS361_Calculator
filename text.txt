@@ -1,1 +1,1 @@
-Error: Second operand required
+add, 1, 2
